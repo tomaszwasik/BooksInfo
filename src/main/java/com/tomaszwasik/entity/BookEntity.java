@@ -1,5 +1,8 @@
-package com.tomaszwasik.model;
+package com.tomaszwasik.entity;
 
+import com.tomaszwasik.data.Author;
+import com.tomaszwasik.data.BookReview;
+import com.tomaszwasik.data.Publisher;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -12,7 +15,7 @@ import java.util.List;
 @Entity
 @Table(name = "book")
 @Data
-public class Book {
+public class BookEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,13 +33,13 @@ public class Book {
 
     @ManyToOne
     @JoinColumn(name = "author_id")
-    private Author author;
+    private AuthorEntity author;
 
     @ManyToOne
     @JoinColumn(name = "publisher_id")
-    private Publisher publisher;
+    private PublisherEntity publisher;
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
-    private List<BookReview> reviews;
+    private List<BookReviewEntity> reviews;
 
 }

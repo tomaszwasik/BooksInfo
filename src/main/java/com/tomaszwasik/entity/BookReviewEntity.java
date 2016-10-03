@@ -1,4 +1,4 @@
-package com.tomaszwasik.model;
+package com.tomaszwasik.entity;
 
 import lombok.Data;
 
@@ -11,7 +11,7 @@ import java.sql.Date;
 @Entity
 @Table(name = "book_review")
 @Data
-public class BookReview {
+public class BookReviewEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,10 +26,10 @@ public class BookReview {
 
     @ManyToOne
     @JoinColumn(name = "book_id")
-    private Book book;
+    private BookEntity book;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private UserEntity user;
 
 }

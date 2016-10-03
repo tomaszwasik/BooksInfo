@@ -1,4 +1,4 @@
-package com.tomaszwasik.model;
+package com.tomaszwasik.entity;
 
 import lombok.Data;
 
@@ -12,7 +12,7 @@ import java.util.List;
 @Entity
 @Table(name = "author")
 @Data
-public class Author {
+public class AuthorEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,7 +35,7 @@ public class Author {
     private String description;
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
-    private List<Book> books;
+    private List<BookEntity> books;
 
 }
 
