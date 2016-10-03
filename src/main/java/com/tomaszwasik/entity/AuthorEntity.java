@@ -36,7 +36,6 @@ public class AuthorEntity {
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private List<BookEntity> books;
-
 }
 
 
