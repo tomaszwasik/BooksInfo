@@ -25,7 +25,7 @@ public class BookEntity {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "publication_date")
+    @Column(name = "publication_date", columnDefinition = "Date")
     private Date publicationDate;
 
     @Column(name = "description")

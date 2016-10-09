@@ -18,7 +18,7 @@ public class BookReviewEntity {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "review_date")
+    @Column(name = "review_date", columnDefinition = "Date")
     private Date reviewDate;
 
     @Column(name = "review")

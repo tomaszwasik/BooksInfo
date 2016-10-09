@@ -9,7 +9,7 @@ import java.util.List;
  * Created by Tomasz Wąsik.
  */
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 @Data
 public class UserEntity {
 

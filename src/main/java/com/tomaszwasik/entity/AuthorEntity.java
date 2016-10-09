@@ -25,10 +25,11 @@ public class AuthorEntity {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "date_of_birth")
+    @Column(name = "date_of_birth", columnDefinition = "Date")
+
     private Date dateOfBirth;
 
-    @Column(name = "date_of_death")
+    @Column(name = "date_of_death", columnDefinition = "Date")
     private Date dateOfDeath;
 
     @Column(name = "description")
