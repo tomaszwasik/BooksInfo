@@ -18,6 +18,9 @@ public class UserEntity {
     @Column(name = "id")
     private Long id;
 
+    @Column (name = "pass")
+    private String password;
+
     @Column(name = "email")
     private String email;
 
@@ -26,6 +29,9 @@ public class UserEntity {
 
     @Column(name = "last_name")
     private String lastName;
+
+    @Column(name = "description", columnDefinition = "VARCHAR(512) NULL")
+    private String description;
 
     @Column(name = "phone_number")
     private String phoneNo;

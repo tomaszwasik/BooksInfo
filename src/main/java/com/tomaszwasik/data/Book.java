@@ -15,6 +15,7 @@ public class Book {
     private String title;
     private Date publicationDate;
     private String description;
+    private double averagePrice;
     private Author author;
     private Publisher publisher;
     private List<BookReview> reviews;

@@ -1,8 +1,5 @@
 package com.tomaszwasik.entity;
 
-import com.tomaszwasik.data.Author;
-import com.tomaszwasik.data.BookReview;
-import com.tomaszwasik.data.Publisher;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -28,8 +25,11 @@ public class BookEntity {
     @Column(name = "publication_date", columnDefinition = "Date")
     private Date publicationDate;
 
-    @Column(name = "description")
+    @Column(name = "description", columnDefinition = "VARCHAR(1024) NULL")
     private String description;
+
+    @Column (name = "average_price")
+    private double averagePrice;
 
     @ManyToOne
     @JoinColumn(name = "author_id")

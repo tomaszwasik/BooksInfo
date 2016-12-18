@@ -1,5 +1,6 @@
 package com.tomaszwasik.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.sql.Date;
@@ -17,6 +18,8 @@ public class Author {
     private Date dateOfBirth;
     private Date dateOfDeath;
     private String description;
+
+    @JsonIgnore
     private List<Book> books;
 
 }

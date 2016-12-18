@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Shop Homepage - Start Bootstrap Template</title>
+    <title>Books</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -39,16 +39,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Start Bootstrap</a>
+                <a class="navbar-brand" href="#">Book Info</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
                         <a href="#">About</a>
-                    </li>
-                    <li>
-                        <a href="#">Services</a>
                     </li>
                     <li>
                         <a href="#">Contact</a>
@@ -65,16 +62,7 @@
 
         <div class="row">
 
-            <div class="col-md-3">
-                <p class="lead">Shop Name</p>
-                <div class="list-group">
-                    <a href="#" class="list-group-item">Category 1</a>
-                    <a href="#" class="list-group-item">Category 2</a>
-                    <a href="#" class="list-group-item">Category 3</a>
-                </div>
-            </div>
-
-            <div class="col-md-9">
+            <div class="col-md-12">
 
                 <div class="row carousel-holder">
 
@@ -87,13 +75,13 @@
                             </ol>
                             <div class="carousel-inner">
                                 <div class="item active">
-                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
+                                    <img class="slide-image" src="images/blur-old-antique-book.jpg" alt="">
                                 </div>
                                 <div class="item">
-                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
+                                    <img class="slide-image" src="images/pexels-photo-12064.jpeg" alt="">
                                 </div>
                                 <div class="item">
-                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
+                                    <img class="slide-image" src="images/c.jpeg" alt="">
                                 </div>
                             </div>
                             <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
@@ -108,122 +96,63 @@
                 </div>
 
                 <div class="row">
-
-                    <div class="col-sm-4 col-lg-4 col-md-4">
+				
+					<div class="col-sm-12 col-lg-12 col-md-12">
                         <div class="thumbnail">
-                            <img src="http://placehold.it/320x150" alt="">
                             <div class="caption">
-                                <h4 class="pull-right">$24.99</h4>
-                                <h4><a href="#">First Product</a>
+                                <h4 class="pull-right" th:text="${'$' + book.averagePrice}">$74.99</h4>
+                                <h4><a href="#" th:if="${book.title != null}" th:text="${book.title}">Book Title</a>
                                 </h4>
-                                <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
-                            </div>
+                                <p th:text="${book.description}">Vestibulum lectus urna, venenatis at scelerisque eget, commodo in lectus. Cras pretium pretium orci, nec placerat sapien interdum et. Quisque interdum lorem vulputate ex interdum, efficitur iaculis nibh aliquam. Sed ante turpis, blandit eu tellus ut, pharetra tempor lacus. Aliquam lacinia arcu et sollicitudin blandit. Mauris nec dolor vel risus tempus porttitor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam ut nunc eget tortor fringilla finibus. Cras sed placerat orci. Quisque vitae egestas dolor. Aliquam convallis lorem libero, nec ullamcorper augue ornare ullamcorper. Sed egestas ornare eros in blandit.</p>
+							</div>
+							<div class="caption-small">
+								<p>&nbsp;&nbsp;&nbsp;<b>Author: </b><span th:text="${book.author.firstName + ' ' + book.author.lastName}">Tomasz Wąsik</span></p>
+								<p>&nbsp;&nbsp;&nbsp;<b>Publication date: </b><span th:text="${book.publicationDate}">17.08.1991</span></p>
+								<p>&nbsp;&nbsp;&nbsp;<b>Publisher: </b><span th:text="${book.publisher.name}">Wasik Co.</span></p>
+							</div>
                             <div class="ratings">
-                                <p class="pull-right">15 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                </p>
+                                <p class="pull-right"><a href="/reload" class="btn btn-info btn-lg button-custom" role="button">Reload</a></p>
+                                <p>100 reviews</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-sm-4 col-lg-4 col-md-4">
+                    <div class="col-sm-6 col-lg-6 col-md-6">
                         <div class="thumbnail">
-                            <img src="http://placehold.it/320x150" alt="">
+							<img src="images/d.jpeg" alt="">
                             <div class="caption">
-                                <h4 class="pull-right">$64.99</h4>
-                                <h4><a href="#">Second Product</a>
+                                <h4><a href="#" th:text="${author.firstName + ' ' + author.lastName}">Author Name</a>
                                 </h4>
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
+                                <p th:text="${author.description}">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+							</div>
+							<div class="caption-small">
+								<p>&nbsp;&nbsp;&nbsp;<b>Date of birth: </b><span th:text="${author.dateOfBirth}">17.08.1991</span></p>
+								<p>&nbsp;&nbsp;&nbsp;<b>Date of death: </b><span th:text="${author.dateOfDeath}">17.08.1991</p>
+							</div>
                             <div class="ratings">
-                                <p class="pull-right">12 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </p>
+                                <p class="pull-right"><a href="/reload" class="btn btn-info btn-lg button-custom" role="button">Reload</a></p>
+                                <p><a href="#">Books list</a></p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-sm-4 col-lg-4 col-md-4">
+                    <div class="col-sm-6 col-lg-6 col-md-6">
                         <div class="thumbnail">
-                            <img src="http://placehold.it/320x150" alt="">
+							<img src="images/e.jpeg" alt="">
                             <div class="caption">
-                                <h4 class="pull-right">$74.99</h4>
-                                <h4><a href="#">Third Product</a>
+                                <h4><a href="#" th:text="${user.firstName + ' ' + user.lastName}">User Name</a>
                                 </h4>
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
+                                <p th:text="${user.description}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ut sem ante. Duis sit amet viverra tortor. Nunc ac vulputate urna. Quisque diam felis, posuere mollis aliquet eu, accumsan a enim. Sed in fringilla dolor. Donec eget sem nibh. Pellentesque vulputate augue quis risus convallis blandit. Duis eu mattis purus. Nam nec diam augue.</p>
+							</div>
+							<div class="caption-small">
+								<p>&nbsp;&nbsp;&nbsp;<b>Phone: </b><span th:text="${user.phoneNo}">507286504</span></p>
+								<p>&nbsp;&nbsp;&nbsp;<b>Email: </b><span th:text="${user.email}">tomaszwasik@live.com</span></p>
+							</div>
                             <div class="ratings">
-                                <p class="pull-right">31 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </p>
+                                <p class="pull-right"><a href="/reload" class="btn btn-info btn-lg button-custom" role="button">Reload</a></p>
+                                <p><a href="#">Reviews list</a></p>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="http://placehold.it/320x150" alt="">
-                            <div class="caption">
-                                <h4 class="pull-right">$84.99</h4>
-                                <h4><a href="#">Fourth Product</a>
-                                </h4>
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right">6 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="http://placehold.it/320x150" alt="">
-                            <div class="caption">
-                                <h4 class="pull-right">$94.99</h4>
-                                <h4><a href="#">Fifth Product</a>
-                                </h4>
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right">18 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <h4><a href="#">Like this template?</a>
-                        </h4>
-                        <p>If you like this template, then check out <a target="_blank" href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">this tutorial</a> on how to build a working review system for your online store!</p>
-                        <a class="btn btn-primary" target="_blank" href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">View Tutorial</a>
                     </div>
 
                 </div>

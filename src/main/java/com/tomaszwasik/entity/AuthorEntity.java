@@ -32,7 +32,7 @@ public class AuthorEntity {
     @Column(name = "date_of_death", columnDefinition = "Date")
     private Date dateOfDeath;
 
-    @Column(name = "description")
+    @Column(name = "description", columnDefinition = "VARCHAR(512) NULL")
     private String description;
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)

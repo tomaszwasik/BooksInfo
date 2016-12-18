@@ -21,7 +21,7 @@ public class BookReviewEntity {
     @Column(name = "review_date", columnDefinition = "Date")
     private Date reviewDate;
 
-    @Column(name = "review")
+    @Column(name = "review", columnDefinition = "VARCHAR(2048) NULL")
     private String review;
 
     @ManyToOne
