@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api")
-public class DefaultRestController {
+public class RestHomeController {
 
     @Autowired
     private AuthorService authorService;

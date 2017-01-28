@@ -10,7 +10,6 @@ import java.sql.Date;
  */
 @Entity
 @Table(name = "book_review")
-@Data
 public class BookReviewEntity {
 
     @Id
@@ -21,7 +20,7 @@ public class BookReviewEntity {
     @Column(name = "review_date", columnDefinition = "Date")
     private Date reviewDate;
 
-    @Column(name = "review", columnDefinition = "VARCHAR(2048) NULL")
+    @Column(name = "review", length = 2048, nullable = false)
     private String review;
 
     @ManyToOne
@@ -32,4 +31,43 @@ public class BookReviewEntity {
     @JoinColumn(name = "user_id")
     private UserEntity user;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Date getReviewDate() {
+        return reviewDate;
+    }
+
+    public void setReviewDate(Date reviewDate) {
+        this.reviewDate = reviewDate;
+    }
+
+    public String getReview() {
+        return review;
+    }
+
+    public void setReview(String review) {
+        this.review = review;
+    }
+
+    public BookEntity getBook() {
+        return book;
+    }
+
+    public void setBook(BookEntity book) {
+        this.book = book;
+    }
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
 }

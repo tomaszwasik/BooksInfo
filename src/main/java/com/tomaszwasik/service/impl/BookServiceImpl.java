@@ -3,6 +3,7 @@ package com.tomaszwasik.service.impl;
 import com.tomaszwasik.data.Book;
 import com.tomaszwasik.entity.BookEntity;
 import com.tomaszwasik.repository.BookRepository;
+import com.tomaszwasik.repository.BookReviewRepository;
 import com.tomaszwasik.service.BookService;
 import ma.glasnost.orika.MapperFacade;
 import ma.glasnost.orika.MapperFactory;
@@ -20,6 +21,9 @@ public class BookServiceImpl implements BookService{
 
     @Autowired
     private BookRepository bookRepository;
+
+    @Autowired
+    private BookReviewRepository bookReviewRepository;
 
     private MapperFactory mapperFactory = new DefaultMapperFactory.Builder().build();
 
@@ -41,12 +45,30 @@ public class BookServiceImpl implements BookService{
 
         mapperFactory.classMap(BookEntity.class, Book.class).byDefault();
         MapperFacade mapperFacade = mapperFactory.getMapperFacade();
+        Book book = mapperFacade.map(bookEntity, Book.class);
+
+        Long bookReviewsQuantity = bookReviewRepository.countByBookId(bookEntity.getId());
+        book.setReviewsQuantity(bookReviewsQuantity);
+        return book;
+    }
+
+    @Override
+    public BookEntity findBookEntityById(long id) {
+        return  bookRepository.findOne(id);
+    }
+
+    @Override
+    public Book findBookById(long id) {
+        BookEntity bookEntity = bookRepository.findOne(id);
+        mapperFactory.classMap(BookEntity.class, Book.class).byDefault();
+        MapperFacade mapperFacade = mapperFactory.getMapperFacade();
         return mapperFacade.map(bookEntity, Book.class);
     }
 
+
     private int getRandomNumberInRange(int max) {
         if (1 >= max) {
-            throw new IllegalArgumentException("max must be greater than min = 1");
+            return 1;
         }
         if(r == null){
             r = new Random();

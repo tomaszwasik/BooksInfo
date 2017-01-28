@@ -18,9 +18,10 @@ public class Author {
     private Date dateOfBirth;
     private Date dateOfDeath;
     private String description;
+    private Long booksQuantity;
 
-    @JsonIgnore
-    private List<Book> books;
+    /*@JsonIgnore
+    private List<Book> books;*/
 
 }
 

@@ -11,7 +11,6 @@ import java.util.List;
  */
 @Entity
 @Table(name = "author")
-@Data
 public class AuthorEntity {
 
     @Id
@@ -26,17 +25,73 @@ public class AuthorEntity {
     private String lastName;
 
     @Column(name = "date_of_birth", columnDefinition = "Date")
-
     private Date dateOfBirth;
 
     @Column(name = "date_of_death", columnDefinition = "Date")
     private Date dateOfDeath;
 
-    @Column(name = "description", columnDefinition = "VARCHAR(512) NULL")
+    @Column(name = "description", length = 512)
     private String description;
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private List<BookEntity> books;
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public Date getDateOfDeath() {
+        return dateOfDeath;
+    }
+
+    public void setDateOfDeath(Date dateOfDeath) {
+        this.dateOfDeath = dateOfDeath;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public List<BookEntity> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<BookEntity> books) {
+        this.books = books;
+    }
 }
 
 

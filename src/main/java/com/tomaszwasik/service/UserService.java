@@ -1,6 +1,7 @@
 package com.tomaszwasik.service;
 
 import com.tomaszwasik.data.User;
+import com.tomaszwasik.entity.UserEntity;
 
 /**
  * Created by Tomasz Wąsik, tomaszwasik@live.com
@@ -8,4 +9,7 @@ import com.tomaszwasik.data.User;
 public interface UserService {
 
     User findUserByRandomId();
+
+
+    UserEntity findUserByUsername(String username);
 }

@@ -7,4 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * Created by Tomasz Wąsik, tomaszwasik@live.com
  */
 public interface BookReviewRepository extends JpaRepository<BookReviewEntity, Long>{
+
+    Long countByBookId(Long id);
+
+    Long countByUserId(Long id);
 }

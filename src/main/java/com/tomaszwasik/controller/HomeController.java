@@ -7,6 +7,8 @@ import com.tomaszwasik.service.AuthorService;
 import com.tomaszwasik.service.BookService;
 import com.tomaszwasik.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,11 +51,21 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping ("/reload")
-    public String reload(){
-        final UriComponentsBuilder uriComponents = MvcUriComponentsBuilder.fromController(HomeController.class);
-        final String path = uriComponents.build().getPath();
-        return "redirect:" + path;
+    @GetMapping ("/reloadBook")
+    public String reloadBook(Model model){
+        return home(model);
+
+    }
+
+    @GetMapping ("/reloadAuthor")
+    public String reloadAuthor(Model model){
+        return home(model);
+
+    }
+
+    @GetMapping ("/reloadUser")
+    public String reloadUser(Model model){
+        return home(model);
 
     }
 

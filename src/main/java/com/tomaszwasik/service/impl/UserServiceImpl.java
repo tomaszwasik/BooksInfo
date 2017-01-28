@@ -2,6 +2,7 @@ package com.tomaszwasik.service.impl;
 
 import com.tomaszwasik.data.User;
 import com.tomaszwasik.entity.UserEntity;
+import com.tomaszwasik.repository.BookReviewRepository;
 import com.tomaszwasik.repository.UserRepository;
 import com.tomaszwasik.service.UserService;
 import ma.glasnost.orika.MapperFacade;
@@ -20,6 +21,9 @@ public class UserServiceImpl implements UserService{
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private BookReviewRepository bookReviewRepository;
 
     private MapperFactory mapperFactory = new DefaultMapperFactory.Builder().build();
     private Random r;
@@ -41,12 +45,22 @@ public class UserServiceImpl implements UserService{
 
         mapperFactory.classMap(UserEntity.class, User.class).byDefault();
         MapperFacade mapperFacade = mapperFactory.getMapperFacade();
-        return mapperFacade.map(userEntity, User.class);
+        User user = mapperFacade.map(userEntity, User.class);
+
+        Long bookReviewQuantity = bookReviewRepository.countByUserId(userEntity.getId());
+        user.setReviewsQuantity(bookReviewQuantity);
+
+        return user;
+    }
+
+    @Override
+    public UserEntity findUserByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 
     private int getRandomNumberInRange(int max) {
         if (1 >= max) {
-            throw new IllegalArgumentException("max must be greater than min = 1");
+            return 1;
         }
         if(r == null){
             r = new Random();

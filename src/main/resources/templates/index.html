@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
 
 <head>
 
@@ -39,7 +40,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Book Info</a>
+                <a class="navbar-brand" href="/">Book Info</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -50,6 +51,13 @@
                     <li>
                         <a href="#">Contact</a>
                     </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li sec:authorize="isAnonymous()"><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li sec:authorize="isAnonymous()"><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+
+                    <li sec:authorize="isAuthenticated()"><a href="#"><span class="glyphicon glyphicon-user"></span> <span sec:authentication="name"> Sign Up</span></a></li>
+                    <li sec:authorize="isAuthenticated()"><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -112,7 +120,8 @@
 							</div>
                             <div class="ratings">
                                 <p class="pull-right"><a href="/reload" class="btn btn-info btn-lg button-custom" role="button">Reload</a></p>
-                                <p>100 reviews</p>
+                                <p class="pull-right"><a href="#" th:href="${'/addBookReview/' + book.id}" class="btn btn-info btn-lg button-custom button-custom-v3" role="button">Add review</a></p>
+                                <p><a href="#" th:text="${'Reviews (' + book.reviewsQuantity + ')'}">Reviews (100)</a></p>
                             </div>
                         </div>
                     </div>
@@ -131,7 +140,7 @@
 							</div>
                             <div class="ratings">
                                 <p class="pull-right"><a href="/reload" class="btn btn-info btn-lg button-custom" role="button">Reload</a></p>
-                                <p><a href="#">Books list</a></p>
+                                <p><a href="#" th:text="${'Books (' + author.booksQuantity + ')'}">Books (50)</a></p>
                             </div>
                         </div>
                     </div>
@@ -150,7 +159,7 @@
 							</div>
                             <div class="ratings">
                                 <p class="pull-right"><a href="/reload" class="btn btn-info btn-lg button-custom" role="button">Reload</a></p>
-                                <p><a href="#">Reviews list</a></p>
+                                <p><a href="#" th:text="${'Reviews (' + user.reviewsQuantity + ')'}">Reviews (25)</a></p>
                             </div>
                         </div>
                     </div>
@@ -172,7 +181,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
+                    <p>Copyright &copy; Your Website 2016</p>
                 </div>
             </div>
         </footer>

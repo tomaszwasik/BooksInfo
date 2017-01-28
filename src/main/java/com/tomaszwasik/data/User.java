@@ -1,6 +1,7 @@
 package com.tomaszwasik.data;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.util.List;
@@ -14,5 +15,8 @@ public class User {
     private String lastName;
     private String description;
     private String phoneNo;
-    private List<BookReview> reviews;
+    private Long reviewsQuantity;
+
+    /*@JsonIgnore
+    private List<BookReview> reviews;*/
 }

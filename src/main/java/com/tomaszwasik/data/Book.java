@@ -1,5 +1,6 @@
 package com.tomaszwasik.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.sql.Date;
@@ -18,5 +19,8 @@ public class Book {
     private double averagePrice;
     private Author author;
     private Publisher publisher;
-    private List<BookReview> reviews;
+    private Long reviewsQuantity;
+
+    /*@JsonIgnore
+    private List<BookReview> reviews;*/
 }

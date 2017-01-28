@@ -1,5 +1,6 @@
 package com.tomaszwasik.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.util.List;
@@ -14,5 +15,7 @@ public class Publisher {
     private String name;
     private String city;
     private String country;
-    private List<Book> books;
+
+    /*@JsonIgnore
+    private List<Book> books;*/
 }
